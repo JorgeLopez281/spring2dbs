@@ -31,18 +31,6 @@ import com.spring2dbs.service.IClientSQLService;
 @RequestMapping("/spring2db")
 public class ClientRestController {
 	
-	/*
-	 * Propiedades de la entidad en MySQL: 
-	 * Nombres 
-	 * Apellidos 
-	 * Tipo y número de identificación 
-	 * Edad 
-	 * Ciudad de nacimiento
-	 * 
-	 * Propiedades de la entidad en Mongo 
-	 * Foto (Archivo base64)
-	 */
-	
 	@Autowired
 	private IClientNoSQLService iClientNoSQLService;
 	@Autowired
