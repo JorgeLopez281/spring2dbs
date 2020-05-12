@@ -26,6 +26,8 @@ import com.spring2dbs.mapper.MapperFindAgeClientEntity;
 import com.spring2dbs.service.IClientNoSQLService;
 import com.spring2dbs.service.IClientSQLService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/spring2db")
@@ -45,6 +47,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@PostMapping("/saveClient")
+	@ApiOperation("Metodo Post encargado de Guardar un solo cliente en la Base de Datos MySQL y MongoDB segun la distribucion especificada.")
 	public ResponseEntity<?> addClient(@RequestBody MapperClientEntity client){
 		
 		/**
@@ -86,6 +89,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@DeleteMapping("/deleteClient")
+	@ApiOperation("Metodo Delete encargado de Eliminar un solo cliente de la Base de Datos MySQL y MongoDB.")
 	public ResponseEntity<?> deleteClient(@RequestBody MapperClientEntity client){
 		
 		/**
@@ -111,6 +115,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@DeleteMapping("/deleteAllClients")
+	@ApiOperation("Metodo Delete encargado de Eliminar todos los clientes de la Base de Datos MySQL y MongoDB.")
 	public ResponseEntity<?> deleteAll(){
 		iClientNoSQLService.deleteAllClient();
 		iClientSQLService.deleteAllClient();
@@ -124,6 +129,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@GetMapping("/getAllClients")
+	@ApiOperation("Metodo Get encargado de recuperar todos los clientes de la Base de Datos MySQL y MongoDB.")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<?> getAllUsers(){
 		List<ClientEntityNoSQL> clientEntityNoSqlList = iClientNoSQLService.findAll();
@@ -181,6 +187,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@PostMapping("/getClientOne")
+	@ApiOperation("Metodo Post encargado de Recuperar un solo cliente de la Base de Datos MySQL y MongoDB, por medio de su Numero de Identificacion.")
 	public ResponseEntity<?> getClientOne(@RequestBody MapperClientEntity client){
 		
 		ClientEntitySQL clientEntitySQL = iClientSQLService.findBynumIdentification(client.getNumIdentification());
@@ -212,6 +219,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@PutMapping("/updateClient")
+	@ApiOperation("Metodo Put encargado de actualizar la informacion de un cliente en la Base de Datos MySQL y MongoDB.")
 	public ResponseEntity<?> updateClient(@RequestBody MapperClientEntity client){
 		
 		ClientEntitySQL clientEntitySQLDB = iClientSQLService.findBynumIdentification(client.getNumIdentification());
@@ -253,6 +261,7 @@ public class ClientRestController {
 	 * @return
 	 */
 	@PostMapping("/findClientByAge")
+	@ApiOperation("Metodo Post encargado de Recuperar todos los clientes de la Base de Datos MySQL y MongoDB, segun los criterios de busqueda dependiendo la edad")
 	public ResponseEntity<?> findClientByAge(@RequestBody MapperFindAgeClientEntity clientAge){
 		List<MapperClientEntity> mapperClientEntityList = new ArrayList<>();
 		boolean sameAge = clientAge.getSameAge();
